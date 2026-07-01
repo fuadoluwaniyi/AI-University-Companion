@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI University Companion Splash</title>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style data-purpose="custom-gradient">
+    /* Subtle background gradient matching the reference image */
+    body {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F5F7FF 60%, #E8EDFF 100%);
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    
+    /* Custom purple/blue gradient for the icon container */
+    .icon-gradient {
+      background: linear-gradient(135deg, #7E57FF 0%, #B86FFF 100%);
+    }
+  </style>
+<style data-purpose="typography">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-between py-12 px-8">
+<!-- BEGIN: SplashContent -->
+<main class="flex-1 flex flex-col items-center justify-center text-center space-y-8" data-purpose="main-splash-container">
+<!-- BEGIN: AppIcon -->
+<div class="relative mb-4" data-purpose="app-icon">
+<!-- Chat Bubble Container -->
+<div class="w-20 h-20 icon-gradient rounded-3xl flex items-center justify-center shadow-lg relative">
+<!-- Star/Sparkle Icon -->
+<svg class="drop-shadow-sm" fill="white" height="36" viewbox="0 0 24 24" width="36" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L14.5 9.5H22L16 14L18.5 21.5L12 17L5.5 21.5L8 14L2 9.5H9.5L12 2Z"></path>
+</svg>
+<!-- Chat Bubble Tail -->
+<div class="absolute -bottom-2 right-4 w-6 h-6 icon-gradient transform rotate-45 rounded-sm -z-10"></div>
+</div>
+</div>
+<!-- END: AppIcon -->
+<!-- BEGIN: BrandingText -->
+<div class="space-y-4 max-w-xs" data-purpose="branding-labels">
+<h1 class="text-3xl font-bold text-gray-900 tracking-tight leading-tight">
+        AI University<br/>Companion
+      </h1>
+<p class="text-gray-500 text-sm leading-relaxed px-4">
+        Your AI study partner that only answers from your own notes.
+      </p>
+</div>
+<!-- END: BrandingText -->
+</main>
+<!-- END: SplashContent -->
+<!-- BEGIN: LoadingIndicator -->
+<footer class="w-full flex justify-center pb-8" data-purpose="loading-bar">
+<div class="w-16 h-1 bg-blue-600/30 rounded-full overflow-hidden">
+<!-- Animated Progress Strip -->
+<div class="h-full bg-blue-600 w-1/2 rounded-full"></div>
+</div>
+</footer>
+<!-- END: LoadingIndicator -->
+</body></html>
