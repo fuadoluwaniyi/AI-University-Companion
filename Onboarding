@@ -1,0 +1,735 @@
+<!-- Welcome Onboarding -->
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Scholar AI - Onboarding Step 1</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#e3e1ed",
+                      "primary-fixed-dim": "#c0c1ff",
+                      "on-primary": "#ffffff",
+                      "surface-container-high": "#dee8ff",
+                      "on-background": "#111c2d",
+                      "on-surface-variant": "#464652",
+                      "surface-container-low": "#f0f3ff",
+                      "surface-bright": "#f9f9ff",
+                      "secondary-fixed": "#e1e0ff",
+                      "on-tertiary-fixed": "#1a1b23",
+                      "surface": "#f9f9ff",
+                      "primary-fixed": "#e1e0ff",
+                      "error-container": "#ffdad6",
+                      "background": "#f9f9ff",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#272831",
+                      "outline-variant": "#c7c5d4",
+                      "outline": "#777683",
+                      "surface-variant": "#d8e3fb",
+                      "surface-container-highest": "#d8e3fb",
+                      "surface-container": "#e7eeff",
+                      "on-surface": "#111c2d",
+                      "on-tertiary-container": "#aaa9b4",
+                      "secondary": "#4648d4",
+                      "primary-container": "#2e3192",
+                      "on-tertiary-fixed-variant": "#46464f",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#3d3e47",
+                      "on-secondary-container": "#fffbff",
+                      "secondary-fixed-dim": "#c0c1ff",
+                      "surface-dim": "#cfdaf2",
+                      "tertiary-fixed-dim": "#c7c5d1",
+                      "primary": "#15157d",
+                      "error": "#ba1a1a",
+                      "on-primary-container": "#9da1ff",
+                      "on-error-container": "#93000a",
+                      "inverse-surface": "#263143",
+                      "on-primary-fixed-variant": "#373a9b",
+                      "surface-tint": "#4f54b4",
+                      "inverse-primary": "#c0c1ff",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#6063ee",
+                      "on-tertiary": "#ffffff",
+                      "inverse-on-surface": "#ecf1ff",
+                      "on-secondary-fixed": "#07006c",
+                      "on-secondary-fixed-variant": "#2f2ebe",
+                      "on-primary-fixed": "#04006d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "12px",
+                      "stack-md": "24px",
+                      "gutter": "16px",
+                      "container-padding": "20px",
+                      "base": "8px",
+                      "stack-lg": "40px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Manrope"
+                      ],
+                      "label-sm": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg-mobile": [
+                              "Manrope"
+                      ],
+                      "display-lg": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "26px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .spark-gradient {
+            background: linear-gradient(135deg, #4648d4 0%, #2e3192 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md antialiased md:items-center md:justify-center">
+<main class="flex-1 flex flex-col w-full max-w-[480px] mx-auto bg-surface md:bg-white md:shadow-lg md:rounded-2xl md:overflow-hidden relative min-h-screen md:min-h-[850px] md:max-h-[900px]">
+<!-- Header / Progress -->
+<header class="px-container-padding pt-12 pb-6 flex items-center gap-4">
+<span class="font-label-md text-label-md text-on-surface-variant">1/3</span>
+<div class="flex-1 flex gap-2">
+<div class="h-1 flex-1 bg-primary rounded-full"></div>
+<div class="h-1 flex-1 bg-surface-variant rounded-full"></div>
+<div class="h-1 flex-1 bg-surface-variant rounded-full"></div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="px-container-padding flex-1 flex flex-col">
+<div class="mb-stack-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface flex items-center gap-2 mb-2">
+                    Welcome 
+                    <span class="text-secondary" style="font-size: 28px;">👋</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Let's study smarter together.
+                </p>
+</div>
+<!-- Illustration Area -->
+<div class="flex justify-center items-center py-stack-lg mb-stack-lg">
+<div class="w-32 h-32 rounded-3xl spark-gradient shadow-[0px_12px_32px_rgba(46,49,146,0.25)] flex items-center justify-center transform rotate-3">
+<span class="material-symbols-outlined text-white" style="font-size: 64px; font-variation-settings: 'FILL' 1;">
+                        temp_preferences_custom
+                    </span>
+</div>
+</div>
+<!-- Value Props List -->
+<div class="flex flex-col gap-stack-md flex-1">
+<!-- Prop 1 -->
+<div class="flex gap-4 items-start">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0 text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">
+                            save
+                        </span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface mb-1">Remembers your notes</h3>
+<p class="font-body-sm text-sm text-on-surface-variant">Everything you add is saved and organized.</p>
+</div>
+</div>
+<!-- Prop 2 -->
+<div class="flex gap-4 items-start">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0 text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">
+                            lightbulb
+                        </span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface mb-1">Answers from your notes</h3>
+<p class="font-body-sm text-sm text-on-surface-variant">I only answer from what you've saved.</p>
+</div>
+</div>
+<!-- Prop 3 -->
+<div class="flex gap-4 items-start">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0 text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">
+                            psychology
+                        </span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface mb-1">Quizzes you</h3>
+<p class="font-body-sm text-sm text-on-surface-variant">Practice, improve and ace your exams.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer -->
+<div class="p-container-padding pb-safe bg-surface border-t border-outline-variant/20 mt-auto">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-4 rounded-xl shadow-[0px_4px_20px_rgba(46,49,146,0.15)] hover:opacity-90 transition-opacity active:scale-[0.98]">
+                Get Started
+            </button>
+</div>
+</main>
+</body></html>
+
+<!-- User Setup Onboarding -->
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Scholar AI - Onboarding Step 2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "tertiary-fixed": "#e3e1ed",
+                            "primary-fixed-dim": "#c0c1ff",
+                            "on-primary": "#ffffff",
+                            "surface-container-high": "#dee8ff",
+                            "on-background": "#111c2d",
+                            "on-surface-variant": "#464652",
+                            "surface-container-low": "#f0f3ff",
+                            "surface-bright": "#f9f9ff",
+                            "secondary-fixed": "#e1e0ff",
+                            "on-tertiary-fixed": "#1a1b23",
+                            "surface": "#f9f9ff",
+                            "primary-fixed": "#e1e0ff",
+                            "error-container": "#ffdad6",
+                            "background": "#f9f9ff",
+                            "on-secondary": "#ffffff",
+                            "tertiary": "#272831",
+                            "outline-variant": "#c7c5d4",
+                            "outline": "#777683",
+                            "surface-variant": "#d8e3fb",
+                            "surface-container-highest": "#d8e3fb",
+                            "surface-container": "#e7eeff",
+                            "on-surface": "#111c2d",
+                            "on-tertiary-container": "#aaa9b4",
+                            "secondary": "#4648d4",
+                            "primary-container": "#2e3192",
+                            "on-tertiary-fixed-variant": "#46464f",
+                            "on-error": "#ffffff",
+                            "tertiary-container": "#3d3e47",
+                            "on-secondary-container": "#fffbff",
+                            "secondary-fixed-dim": "#c0c1ff",
+                            "surface-dim": "#cfdaf2",
+                            "tertiary-fixed-dim": "#c7c5d1",
+                            "primary": "#15157d",
+                            "error": "#ba1a1a",
+                            "on-primary-container": "#9da1ff",
+                            "on-error-container": "#93000a",
+                            "inverse-surface": "#263143",
+                            "on-primary-fixed-variant": "#373a9b",
+                            "surface-tint": "#4f54b4",
+                            "inverse-primary": "#c0c1ff",
+                            "surface-container-lowest": "#ffffff",
+                            "secondary-container": "#6063ee",
+                            "on-tertiary": "#ffffff",
+                            "inverse-on-surface": "#ecf1ff",
+                            "on-secondary-fixed": "#07006c",
+                            "on-secondary-fixed-variant": "#2f2ebe",
+                            "on-primary-fixed": "#04006d"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "stack-sm": "12px",
+                            "stack-md": "24px",
+                            "gutter": "16px",
+                            "container-padding": "20px",
+                            "base": "8px",
+                            "stack-lg": "40px"
+                    },
+                    "fontFamily": {
+                            "headline-md": ["Manrope"],
+                            "body-lg": ["Hanken Grotesk"],
+                            "body-md": ["Hanken Grotesk"],
+                            "label-md": ["Hanken Grotesk"],
+                            "headline-lg": ["Manrope"],
+                            "label-sm": ["Hanken Grotesk"],
+                            "headline-lg-mobile": ["Manrope"],
+                            "display-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                            "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                            "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Focus styles for inputs */
+        input:focus {
+            outline: none;
+            border-color: #6063ee;
+            box-shadow: 0 0 0 1px #6063ee;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center font-body-md">
+<!-- Mobile Container (Max width constraint to simulate app view on desktop) -->
+<main class="w-full max-w-[428px] min-h-[884px] bg-surface-container-lowest relative flex flex-col md:shadow-[0px_4px_20px_rgba(46,49,146,0.06)] md:rounded-[32px] md:overflow-hidden md:min-h-[850px] md:my-8 mx-auto">
+<!-- Header / Progress Area -->
+<header class="pt-12 px-container-padding pb-4">
+<div class="flex items-center text-label-md text-outline mb-6">
+<span class="font-bold text-primary">2</span>
+<span class="mx-1">/</span>
+<span>3</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background mb-2">Tell us about you</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">We'll personalize your experience.</p>
+</header>
+<!-- Form Content -->
+<section class="flex-1 px-container-padding py-stack-md flex flex-col gap-stack-md">
+<!-- Input Field 1: Name -->
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-background" for="userName">Your name</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-transparent rounded-lg py-3 px-4 font-body-md text-body-md text-on-background transition-all duration-200 placeholder:text-outline-variant focus:border-secondary-container focus:ring-1 focus:ring-secondary-container focus:bg-surface-container-lowest" id="userName" type="text" value="David Johnson">
+</div>
+</div>
+<!-- Input Field 2: Study -->
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-background" for="userStudy">What are you studying?</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-transparent rounded-lg py-3 px-4 font-body-md text-body-md text-on-background transition-all duration-200 placeholder:text-outline-variant focus:border-secondary-container focus:ring-1 focus:ring-secondary-container focus:bg-surface-container-lowest" id="userStudy" type="text" value="Computer Science">
+</div>
+</div>
+<!-- Input Field 3: Goal -->
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-background" for="userGoal">Your goal</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-transparent rounded-lg py-3 px-4 font-body-md text-body-md text-on-background transition-all duration-200 placeholder:text-outline-variant focus:border-secondary-container focus:ring-1 focus:ring-secondary-container focus:bg-surface-container-lowest" id="userGoal" type="text" value="Pass my finals">
+</div>
+</div>
+<!-- Privacy Reassurance -->
+<div class="mt-auto flex items-center justify-center gap-2 text-on-surface-variant py-4">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<p class="font-label-sm text-label-sm text-center">
+                    Saved only on your device.<br>We respect your privacy.
+                </p>
+</div>
+</section>
+<!-- Bottom Actions -->
+<footer class="p-container-padding pb-8 mt-auto flex gap-gutter">
+<button class="flex-1 py-3 px-4 rounded-xl font-label-md text-label-md bg-transparent border border-outline-variant text-on-surface-variant hover:bg-surface-variant transition-colors duration-200 flex justify-center items-center">
+                Back
+            </button>
+<button class="flex-[2] py-3 px-4 rounded-xl font-label-md text-label-md bg-primary-container text-on-primary shadow-[0px_4px_16px_rgba(46,49,146,0.2)] hover:bg-primary transition-all duration-200 hover:shadow-[0px_6px_20px_rgba(46,49,146,0.3)] flex justify-center items-center">
+                Continue
+            </button>
+</footer>
+</main>
+</body></html>
+
+<!-- First Note Onboarding -->
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Onboarding - Step 3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#e3e1ed",
+                      "primary-fixed-dim": "#c0c1ff",
+                      "on-primary": "#ffffff",
+                      "surface-container-high": "#dee8ff",
+                      "on-background": "#111c2d",
+                      "on-surface-variant": "#464652",
+                      "surface-container-low": "#f0f3ff",
+                      "surface-bright": "#f9f9ff",
+                      "secondary-fixed": "#e1e0ff",
+                      "on-tertiary-fixed": "#1a1b23",
+                      "surface": "#f9f9ff",
+                      "primary-fixed": "#e1e0ff",
+                      "error-container": "#ffdad6",
+                      "background": "#f9f9ff",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#272831",
+                      "outline-variant": "#c7c5d4",
+                      "outline": "#777683",
+                      "surface-variant": "#d8e3fb",
+                      "surface-container-highest": "#d8e3fb",
+                      "surface-container": "#e7eeff",
+                      "on-surface": "#111c2d",
+                      "on-tertiary-container": "#aaa9b4",
+                      "secondary": "#4648d4",
+                      "primary-container": "#2e3192",
+                      "on-tertiary-fixed-variant": "#46464f",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#3d3e47",
+                      "on-secondary-container": "#fffbff",
+                      "secondary-fixed-dim": "#c0c1ff",
+                      "surface-dim": "#cfdaf2",
+                      "tertiary-fixed-dim": "#c7c5d1",
+                      "primary": "#15157d",
+                      "error": "#ba1a1a",
+                      "on-primary-container": "#9da1ff",
+                      "on-error-container": "#93000a",
+                      "inverse-surface": "#263143",
+                      "on-primary-fixed-variant": "#373a9b",
+                      "surface-tint": "#4f54b4",
+                      "inverse-primary": "#c0c1ff",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#6063ee",
+                      "on-tertiary": "#ffffff",
+                      "inverse-on-surface": "#ecf1ff",
+                      "on-secondary-fixed": "#07006c",
+                      "on-secondary-fixed-variant": "#2f2ebe",
+                      "on-primary-fixed": "#04006d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "12px",
+                      "stack-md": "24px",
+                      "gutter": "16px",
+                      "container-padding": "20px",
+                      "base": "8px",
+                      "stack-lg": "40px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Manrope"
+                      ],
+                      "label-sm": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg-mobile": [
+                              "Manrope"
+                      ],
+                      "display-lg": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "26px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding utility */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Subtle entrance animation for the feedback card */
+        @keyframes subtleUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-subtle-up {
+            animation: subtleUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Progress Header - Linear Flow, Nav Suppressed -->
+<header class="w-full flex items-center justify-between px-container-padding py-stack-md pt-safe">
+<!-- Back Action -->
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-variant/50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<!-- Progress Indicator -->
+<div class="font-label-sm text-label-sm text-outline tracking-[0.1em] uppercase">
+            3 / 3
+        </div>
+<!-- Spacer for alignment -->
+<div class="w-10"></div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-container-padding pb-stack-lg flex flex-col max-w-2xl mx-auto w-full">
+<!-- Headers -->
+<section class="mb-stack-lg animate-subtle-up" style="animation-delay: 0.1s;">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-base tracking-tight">
+                Add your first note
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                This is where the magic begins <span class="text-primary opacity-90 inline-block align-middle ml-1">✨</span>
+</p>
+</section>
+<!-- Input Modality Selector -->
+<section class="mb-stack-md animate-subtle-up" style="animation-delay: 0.2s;">
+<div class="flex items-center gap-base overflow-x-auto pb-2 scrollbar-hide -mx-container-padding px-container-padding snap-x snap-mandatory">
+<!-- Paste (Active State) -->
+<button class="snap-start shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-variant border border-transparent text-primary font-label-md text-label-md shadow-[0_2px_8px_rgba(46,49,146,0.08)] transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">content_paste</span>
+                    Paste
+                </button>
+<!-- Upload (Inactive State) -->
+<button class="snap-start shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]">upload_file</span>
+                    Upload
+                </button>
+<!-- Scan (Inactive State) -->
+<button class="snap-start shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]">document_scanner</span>
+                    Scan
+                </button>
+<!-- Record (Inactive State) -->
+<button class="snap-start shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+                    Record
+                </button>
+</div>
+</section>
+<!-- Primary Text Area -->
+<section class="flex-1 flex flex-col min-h-[280px] mb-stack-md animate-subtle-up" style="animation-delay: 0.3s;">
+<div class="relative flex-1 group bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-[0_4px_20px_rgba(46,49,146,0.04)] focus-within:border-secondary focus-within:ring-1 focus-within:ring-secondary focus-within:shadow-[0_4px_20px_rgba(70,72,212,0.08)] transition-all duration-300 overflow-hidden flex flex-col">
+<!-- Inner padding wrapper to allow full height text area without expanding parent -->
+<div class="p-container-padding flex-1 flex flex-col relative">
+<label class="sr-only" for="note-content">Paste your notes here</label>
+<textarea class="w-full h-full bg-transparent border-none outline-none resize-none font-body-md text-body-md text-on-surface placeholder:text-outline/70 focus:ring-0 p-0" id="note-content" placeholder="Paste your notes here...">Photosynthesis is the process used by plants to convert light energy into chemical energy. It occurs in the chloroplasts and involves two main stages: the light-dependent reactions and the Calvin cycle...</textarea>
+</div>
+<!-- Faded gradient at bottom to indicate scrollable content if needed -->
+<div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-surface-container-lowest to-transparent pointer-events-none rounded-b-xl opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+</div>
+</section>
+<!-- Visual Context Indicator (Mock Saved State showing intent) -->
+<section class="mb-stack-lg flex flex-col items-center opacity-0 animate-subtle-up" style="animation-delay: 0.6s;">
+<div class="h-6 flex items-center justify-center mb-2 text-outline-variant">
+<span class="material-symbols-outlined text-[16px] animate-bounce">arrow_downward</span>
+</div>
+<!-- Glassmorphism-inspired contextual card -->
+<div class="w-full bg-surface-container-lowest/80 backdrop-blur-sm border border-outline-variant/20 rounded-xl p-3 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<div class="flex flex-col justify-center">
+<span class="font-label-md text-label-md text-on-surface leading-tight">Photosynthesis Notes</span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Just now • 245 words</span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-emerald-600 shrink-0">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</section>
+<!-- Primary Action -->
+<div class="mt-auto pt-stack-sm animate-subtle-up" style="animation-delay: 0.4s;">
+<button class="w-full py-[18px] px-6 bg-primary text-on-primary font-label-md text-label-md md:font-headline-sm md:text-headline-sm rounded-xl flex items-center justify-center gap-2 shadow-[0_8px_24px_rgba(21,21,125,0.25)] hover:bg-primary-container hover:text-on-primary-container hover:shadow-[0_4px_12px_rgba(21,21,125,0.2)] transition-all duration-200 active:scale-[0.98]">
+                Save to memory
+            </button>
+<div class="flex justify-center mt-4">
+    <button class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">
+        Skip for now
+    </button>
+</div></div>
+</main>
+
+
+
+
+</body></html>
