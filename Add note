@@ -1,0 +1,873 @@
+<!-- Scan Page Viewfinder -->
+<!DOCTYPE html><html class="light" lang="en" style="width: 390px; height: 932px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>EduMind AI - Scan Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#111c2d",
+                        "surface-tint": "#4f54b4",
+                        "background": "#f9f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-secondary-fixed": "#07006c",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "secondary": "#4648d4",
+                        "tertiary": "#272831",
+                        "primary-container": "#2e3192",
+                        "on-primary-fixed-variant": "#373a9b",
+                        "on-background": "#111c2d",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-variant": "#d8e3fb",
+                        "surface-container-high": "#dee8ff",
+                        "on-tertiary-container": "#aaa9b4",
+                        "tertiary-fixed": "#e3e1ed",
+                        "on-primary-fixed": "#04006d",
+                        "secondary-container": "#6063ee",
+                        "on-primary-container": "#9da1ff",
+                        "inverse-surface": "#263143",
+                        "tertiary-fixed-dim": "#c7c5d1",
+                        "on-tertiary-fixed": "#1a1b23",
+                        "outline": "#777683",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c7c5d4",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary": "#15157d",
+                        "surface-dim": "#cfdaf2",
+                        "surface-container": "#e7eeff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#3d3e47",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-container-highest": "#d8e3fb",
+                        "on-secondary-container": "#fffbff",
+                        "surface-bright": "#f9f9ff",
+                        "on-surface-variant": "#464652",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#e1e0ff",
+                        "on-tertiary-fixed-variant": "#46464f",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c0c1ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "gutter": "16px",
+                        "stack-lg": "40px",
+                        "container-padding": "20px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "label-md": ["Hanken Grotesk"],
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes scanLine {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .animate-scan {
+            animation: scanLine 3s linear infinite;
+        }
+        .camera-mask {
+            mask-image: radial-gradient(circle, transparent 60%, black 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col items-center justify-center overflow-hidden">
+<!-- Mobile Viewport Container (Fixed Aspect Ratio for Showcase) -->
+<main class="relative w-full max-w-[430px] h-[932px] bg-black overflow-hidden shadow-2xl flex flex-col">
+<!-- Top App Bar (Custom for Camera Context) -->
+<header class="z-50 px-container-padding py-base flex items-center justify-between text-white bg-black/40 backdrop-blur-sm">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors active:scale-90">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-white">Scan Page</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors active:scale-90">
+<span class="material-symbols-outlined" data-icon="crop_free">crop_free</span>
+</button>
+</header>
+<!-- Camera Viewfinder Section -->
+<section class="flex-1 relative flex items-center justify-center bg-black">
+<!-- Background Image Placeholder (Notebook) -->
+<div class="absolute inset-0 w-full h-full opacity-80">
+<img class="w-full h-full object-cover" data-alt="A high-resolution, top-down perspective of an open academic notebook resting on a rustic wooden desk. The pages are filled with detailed handwritten biological diagrams of plants and photosynthesis equations in neat cursive. The scene is captured in a cinematic dark-mode style with soft, focused studio lighting that highlights the texture of the paper while keeping the edges in deep shadow. A cool blue tonal layer adds a sophisticated, professional technical feel to the student's study environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk6Znx0VgrQfuwIXvD7LEIm96KVD2KSUqp9NS1Gz_iS-VvOmYbsHOk5--iHO0G1AaxheooM6F8TOW8BKTwBMBFhsfTuvWe5AeiRtEx_LbZg-d8uA85ENX8KpRE-LwzcNO6BMX8KdBZY8jL7iEmNmJDJoJ2uN0BggWohLGOqwzBdcEG1BqP4k1m1i1YQAMHlnhLDxw-OH6T26rFUn4UYsiDIeCzg_KTvFuFleQ4jkzlYznPbQ5DFbU6c-6UJL2k286lblV6v3eiFlPS">
+</div>
+<!-- Viewfinder Overlay Elements -->
+<div class="absolute inset-0 border-[40px] border-black/40 pointer-events-none"></div>
+<!-- Scanning Line Animation -->
+<div class="absolute inset-x-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary-container to-transparent shadow-[0_0_15px_rgba(96,99,238,0.8)] animate-scan z-20"></div>
+<!-- Corner Brackets -->
+<div class="absolute top-16 left-16 w-12 h-12 border-t-4 border-l-4 border-white/60 rounded-tl-xl"></div>
+<div class="absolute top-16 right-16 w-12 h-12 border-t-4 border-r-4 border-white/60 rounded-tr-xl"></div>
+<div class="absolute bottom-16 left-16 w-12 h-12 border-b-4 border-l-4 border-white/60 rounded-bl-xl"></div>
+<div class="absolute bottom-16 right-16 w-12 h-12 border-b-4 border-r-4 border-white/60 rounded-br-xl"></div>
+<!-- Focus indicator micro-interaction -->
+<div class="absolute w-20 h-20 border-2 border-secondary/40 rounded-lg animate-pulse pointer-events-none" style="top: 40%; left: 45%;"></div>
+</section>
+<!-- Camera Controls Bottom Bar -->
+<footer class="z-50 px-container-padding pb-12 pt-8 flex items-center justify-between bg-black/60 backdrop-blur-md">
+<!-- Gallery Button -->
+<button class="w-14 h-14 rounded-lg bg-white/10 flex items-center justify-center overflow-hidden border border-white/20 hover:border-white/40 transition-all active:scale-95 group">
+<div class="w-full h-full bg-cover bg-center opacity-70 group-hover:opacity-100 transition-opacity" data-alt="A small, focused thumbnail of a previous scan showing a physics textbook with complex diagrams. The image is crisp and clear, presented in a corporate modern style with deep navy and lavender accents consistent with the EduMind AI brand identity. The thumbnail is framed within a clean, minimalist UI border." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLkbhSXxMtU6AWZYTzFNt_p_viP5EZFILqdGaH8wj74xz6PohVJ15xF9M_QACVBhSSdO_Y-yoT_FpQgckdcrcAkWI38sm81DKiosAzmSu5OiZfNq2VZ8bkZ0mIFCxHOcuQtZEPPPxZMZwc-mkyZch6x6lCkEH0c-56hQNDz8xcpCfAhBhqUE5hduUuQGjaqlG40cz6HLDNFyrcSFbMqQHFHomjInw6WJcH62Ml0cbW3LM9cpEiAcIXa3pc9vononna8JW2724klEGa')">
+</div>
+</button>
+<!-- Shutter Button Container -->
+<div class="relative flex items-center justify-center">
+<div class="absolute w-[88px] h-[88px] border-2 border-white/30 rounded-full"></div>
+<button class="relative w-[72px] h-[72px] bg-white rounded-full flex items-center justify-center transition-transform active:scale-90 shadow-lg shadow-white/20" id="shutter">
+<div class="w-[64px] h-[64px] border-2 border-black/5 rounded-full"></div>
+</button>
+</div>
+<!-- Flash Toggle Button -->
+<button class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="flash_on">flash_on</span>
+</button>
+</footer>
+<!-- Toast Notification (Flash for interaction) -->
+<div class="absolute inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-100 z-[100]" id="flash-effect"></div>
+</main>
+<!-- Floating Action Description (Desktop Only) -->
+<div class="hidden lg:block fixed right-12 top-1/2 -translate-y-1/2 max-w-sm bg-surface-container-lowest p-8 rounded-xl shadow-xl border border-outline-variant">
+<h2 class="font-headline-md text-headline-md text-primary mb-4">Precision Scanning</h2>
+<p class="font-body-md text-on-surface-variant mb-6">
+            Our AI-powered OCR technology processes your handwritten notes in real-time. Ensure good lighting for 99.9% accuracy in diagram translation.
+        </p>
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-label-md">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                Auto-edge detection
+            </li>
+<li class="flex items-center gap-3 text-label-md">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                Handwriting recognition
+            </li>
+<li class="flex items-center gap-3 text-label-md">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                Diagram vectorization
+            </li>
+</ul>
+</div>
+<script>
+        // Simple micro-interaction for the shutter button
+        const shutter = document.getElementById('shutter');
+        const flash = document.getElementById('flash-effect');
+
+        shutter.addEventListener('click', () => {
+            flash.classList.remove('opacity-0');
+            flash.classList.add('opacity-100');
+            
+            setTimeout(() => {
+                flash.classList.remove('opacity-100');
+                flash.classList.add('opacity-0');
+            }, 50);
+
+            // Simulate navigation/processing
+            console.log('Capturing frame...');
+        });
+
+        // Toggle Flash icon
+        const flashBtn = document.querySelector('footer button:last-child');
+        let flashOn = true;
+        flashBtn.addEventListener('click', () => {
+            flashOn = !flashOn;
+            const icon = flashBtn.querySelector('.material-symbols-outlined');
+            icon.textContent = flashOn ? 'flash_on' : 'flash_off';
+            icon.style.color = flashOn ? '#fff' : '#aaa';
+        });
+    </script>
+</body></html>
+
+<!-- Scan Result (Exact Match) -->
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#111c2d",
+                        "surface-tint": "#4f54b4",
+                        "background": "#f9f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-secondary-fixed": "#07006c",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "secondary": "#4648d4",
+                        "tertiary": "#272831",
+                        "primary-container": "#2e3192",
+                        "on-primary-fixed-variant": "#373a9b",
+                        "on-background": "#111c2d",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-variant": "#d8e3fb",
+                        "surface-container-high": "#dee8ff",
+                        "on-tertiary-container": "#aaa9b4",
+                        "tertiary-fixed": "#e3e1ed",
+                        "on-primary-fixed": "#04006d",
+                        "secondary-container": "#6063ee",
+                        "on-primary-container": "#9da1ff",
+                        "inverse-surface": "#263143",
+                        "tertiary-fixed-dim": "#c7c5d1",
+                        "on-tertiary-fixed": "#1a1b23",
+                        "outline": "#777683",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c7c5d4",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary": "#15157d",
+                        "surface-dim": "#cfdaf2",
+                        "surface-container": "#e7eeff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#3d3e47",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-container-highest": "#d8e3fb",
+                        "on-secondary-container": "#fffbff",
+                        "surface-bright": "#f9f9ff",
+                        "on-surface-variant": "#464652",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#e1e0ff",
+                        "on-tertiary-fixed-variant": "#46464f",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c0c1ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "gutter": "16px",
+                        "stack-lg": "40px",
+                        "container-padding": "20px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "label-md": ["Hanken Grotesk"],
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9ff;
+            color: #111c2d;
+            -webkit-font-smoothing: antialiased;
+        }
+        .tonal-card-shadow {
+            box-shadow: 0px 4px 20px rgba(46, 49, 146, 0.06);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden min-h-screen flex flex-col items-center">
+<!-- Top Navigation Shell -->
+<header class="w-full top-0 sticky z-50 bg-background dark:bg-on-background"><div class="flex items-center justify-between px-container-padding py-base w-full max-w-7xl mx-auto"><button class="transition-all duration-200 active:scale-95 hover:opacity-80 p-2">
+  <span class="material-symbols-outlined text-on-surface-variant">chevron_left</span>
+</button>
+<h1 class="font-headline-md text-label-md font-bold text-on-surface">Scan Result</h1>
+<button class="transition-all duration-200 active:scale-95 hover:opacity-80 p-2">
+  
+</button></div></header>
+<main class="w-full max-w-md mx-auto px-container-padding flex-grow pb-32 pt-4">
+<div class="flex flex-col gap-6">
+<!-- Captured Preview Image -->
+<div class="relative group">
+<div class="w-full rounded-xl overflow-hidden tonal-card-shadow aspect-[3/4] bg-surface-container-low border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A high-quality close-up photograph of a student's handwritten notebook page. The page features detailed sketches of a plant with labeled botanical parts and neatly written notes about the photosynthesis process. The lighting is soft and natural, emphasizing the texture of the cream-colored paper and the organic quality of the ink drawings. The overall aesthetic is professional, scholarly, and organized, consistent with a modern academic corporate UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD0Epoov0VN5osoG4jD1Pe1eO9MCuNFBoGSbLdkgvdaREdQN5djJjGh-mk4SUhkENc0lds0-95lnqiRRwRZCoSOigdGYXTJv3wS9mKeXfwwJxPIH31Ssk2JLruITQXRDdFC_WD2YSSFl065VWoTqdIzquCdT2gzZBlO4cSczszqqJ9nXyY3PvhKMkNm2fwG3zaqwJdfSdUHvpWxf2NHudnr7U-ti7pvqJa12f7DbKy6qhKafBTt_hgt4WT8bq_8hDPjkIjds59c4XZ">
+<!-- Overlay indicator for "Scanned" -->
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+</div>
+<div class="absolute top-4 right-4 bg-primary text-on-primary px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<span class="font-label-md text-label-md">Optimized</span>
+</div>
+</div>
+<!-- Extracted Text Section -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-primary">Extracted Text</h2>
+<button class="text-secondary font-label-md text-label-md flex items-center gap-1 hover:underline">
+                        Edit <span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant tonal-card-shadow">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                        Photosynthesis is the process used by plants to convert light energy into chemical energy. It occurs in the chloroplasts and involves two main stages: the light-dependent reactions and the Calvin cycle. 
+                    </p>
+
+</div>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">psychology</span> # Biology
+</span>
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full font-label-sm text-label-sm flex items-center gap-1"><br><button class="ml-1 hover:opacity-70 transition-opacity flex items-center justify-center"><span class="material-symbols-outlined text-[14px]">add</span></button></span>
+</div><div class="mt-4 flex items-center gap-2 bg-surface-container-lowest p-2 rounded-xl border border-outline-variant tonal-card-shadow">
+  <span class="material-symbols-outlined text-on-surface-variant px-2">tag</span>
+  <input type="text" placeholder="Add tag..." class="flex-grow bg-transparent border-none focus:ring-0 text-body-md text-on-surface placeholder:text-on-surface-variant/50 font-body-md">
+  <button class="p-2 bg-primary-container text-on-primary-container rounded-lg hover:opacity-80 transition-all active:scale-95 flex items-center justify-center">
+    <span class="material-symbols-outlined">add</span>
+  </button>
+</div></div>
+<!-- Weak Topics Detection (Contextual) -->
+</div>
+</main>
+<!-- Bottom Action Bar (Contextual Suppression of Main Nav) -->
+<div class="fixed bottom-0 w-full max-w-md px-container-padding pb-10 pt-4 flex gap-4 z-50">
+<button class="py-4 px-6 border-secondary text-secondary bg-surface-container-lowest rounded-xl font-label-md text-label-md transition-all duration-200 active:scale-95 hover:bg-secondary/5 shadow-lg">
+            Retake
+        </button>
+<button class="py-4 px-6 bg-primary text-on-primary rounded-xl font-label-md text-label-md shadow-lg transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 flex-[3]">
+            Save to Memory
+        </button>
+</div>
+<!-- Background Atmospheric Effect -->
+<div class="fixed inset-0 -z-10 opacity-30 pointer-events-none">
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary-container blur-[120px] rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-container blur-[100px] rounded-full transform -translate-x-1/2 translate-y-1/2"></div>
+</div>
+<script>
+        // Micro-interaction for the "Save" button to simulate feedback
+        document.querySelector('button.bg-primary').addEventListener('click', function() {
+            const originalText = this.innerHTML;
+            this.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Saving...';
+            this.classList.add('opacity-80');
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.innerHTML = '<span class="material-symbols-outlined">done_all</span> Saved!';
+                this.classList.replace('bg-primary', 'bg-green-600');
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.classList.replace('bg-green-600', 'bg-primary');
+                    this.classList.remove('opacity-80');
+                    this.disabled = false;
+                }, 2000);
+            }, 1200);
+        });
+    </script>
+
+
+
+
+</body></html>
+
+<!-- Add Note Menu -->
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>EduMind AI - Add Note</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#111c2d",
+                        "surface-tint": "#4f54b4",
+                        "background": "#f9f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-secondary-fixed": "#07006c",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "secondary": "#4648d4",
+                        "tertiary": "#272831",
+                        "primary-container": "#2e3192",
+                        "on-primary-fixed-variant": "#373a9b",
+                        "on-background": "#111c2d",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-variant": "#d8e3fb",
+                        "surface-container-high": "#dee8ff",
+                        "on-tertiary-container": "#aaa9b4",
+                        "tertiary-fixed": "#e3e1ed",
+                        "on-primary-fixed": "#04006d",
+                        "secondary-container": "#6063ee",
+                        "on-primary-container": "#9da1ff",
+                        "inverse-surface": "#263143",
+                        "tertiary-fixed-dim": "#c7c5d1",
+                        "on-tertiary-fixed": "#1a1b23",
+                        "outline": "#777683",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c7c5d4",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary": "#15157d",
+                        "surface-dim": "#cfdaf2",
+                        "surface-container": "#e7eeff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#3d3e47",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-container-highest": "#d8e3fb",
+                        "on-secondary-container": "#fffbff",
+                        "surface-bright": "#f9f9ff",
+                        "on-surface-variant": "#464652",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#e1e0ff",
+                        "on-tertiary-fixed-variant": "#46464f",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c0c1ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "gutter": "16px",
+                        "stack-lg": "40px",
+                        "container-padding": "20px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "label-md": ["Hanken Grotesk"],
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-shadow {
+            box-shadow: 0px 4px 20px rgba(46, 49, 146, 0.06);
+        }
+        .tonal-layer {
+            background: linear-gradient(180deg, rgba(249, 249, 255, 1) 0%, rgba(240, 243, 255, 1) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-50 bg-background dark:bg-on-background">
+<div class="flex items-center justify-between px-container-padding py-base w-full max-w-7xl mx-auto"><button class="transition-all duration-200 active:scale-95 hover:opacity-80 p-2">
+  <span class="material-symbols-outlined text-on-surface-variant">chevron_left</span>
+</button>
+<h1 class="font-headline-md text-label-md font-bold text-on-surface">Add Note</h1>
+<button class="transition-all duration-200 active:scale-95 hover:opacity-80 p-2">
+  <span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button></div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-start px-container-padding pt-stack-lg max-w-3xl mx-auto w-full">
+<!-- Headline Section -->
+<div class="w-full mb-stack-lg text-center md:text-left">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">
+                How do you want to add your note?
+            </h2>
+<p class="font-body-md text-on-surface-variant max-w-md">Select your preferred method to start processing academic information with AI.</p>
+</div>
+<!-- Bento Grid Selection -->
+<div class="grid grid-cols-2 md:grid-cols-2 gap-gutter w-full mb-stack-lg">
+<!-- Paste Notes Card -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-[16px] card-shadow border border-transparent hover:border-primary-container transition-all duration-300 active:scale-95 text-center">
+<div class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
+<span class="material-symbols-outlined text-blue-600 text-[32px]">content_paste</span>
+</div>
+<h3 class="font-headline-md text-label-md text-on-surface mb-1">Paste Notes</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Paste your text notes quickly</p>
+</button>
+<!-- Upload PDF Card -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-[16px] card-shadow border border-transparent hover:border-primary-container transition-all duration-300 active:scale-95 text-center">
+<div class="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-4 group-hover:bg-green-100 transition-colors">
+<span class="material-symbols-outlined text-green-600 text-[32px]">picture_as_pdf</span>
+</div>
+<h3 class="font-headline-md text-label-md text-on-surface mb-1">Upload PDF</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Upload a PDF or document</p>
+</button>
+<!-- Scan Page Card -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-[16px] card-shadow border border-transparent hover:border-primary-container transition-all duration-300 active:scale-95 text-center">
+<div class="w-16 h-16 rounded-full bg-amber-50 flex items-center justify-center mb-4 group-hover:bg-amber-100 transition-colors">
+<span class="material-symbols-outlined text-amber-600 text-[32px]">document_scanner</span>
+</div>
+<h3 class="font-headline-md text-label-md text-on-surface mb-1">Scan Page</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Take a photo or upload an image</p>
+</button>
+<!-- Record Lecture Card -->
+<button class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-[16px] card-shadow border border-transparent hover:border-primary-container transition-all duration-300 active:scale-95 text-center">
+<div class="w-16 h-16 rounded-full bg-purple-50 flex items-center justify-center mb-4 group-hover:bg-purple-100 transition-colors">
+<span class="material-symbols-outlined text-purple-600 text-[32px]">mic</span>
+</div>
+<h3 class="font-headline-md text-label-md text-on-surface mb-1">Record Lecture</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Record audio and get AI transcript</p>
+</button>
+</div>
+<!-- Atmospheric Secondary Content -->
+<div class="w-full bg-surface-container-low rounded-[16px] p-6 mb-stack-lg border border-outline-variant/30 relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline-md text-label-md text-primary mb-2">AI Summary Tip</h4>
+<p class="font-body-md text-on-surface-variant text-sm">Uploading a PDF allows EduMind to generate structured study guides, flashcards, and concept maps in seconds.</p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px] text-primary">auto_awesome</span>
+</div>
+</div>
+</main>
+<!-- Navigation Suppressed for task focus as per mandate -->
+<!-- But included BottomNavBar structure if this was a top-level screen, 
+         however "Add Note" is a task-focused sub-page (suppression logic applied). -->
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                console.log('Action selected');
+            });
+        });
+    </script>
+
+
+</body></html>
+
+<!-- Record Lecture Screen -->
+<!DOCTYPE html><html class="light" lang="en" style="width: 390px; height: 860px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>EduMind AI - Record Lecture</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#111c2d",
+                    "surface-tint": "#4f54b4",
+                    "background": "#f9f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "on-secondary-fixed": "#07006c",
+                    "secondary-fixed-dim": "#c0c1ff",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#ecf1ff",
+                    "secondary": "#4648d4",
+                    "tertiary": "#272831",
+                    "primary-container": "#2e3192",
+                    "on-primary-fixed-variant": "#373a9b",
+                    "on-background": "#111c2d",
+                    "surface-container-low": "#f0f3ff",
+                    "surface-variant": "#d8e3fb",
+                    "surface-container-high": "#dee8ff",
+                    "on-tertiary-container": "#aaa9b4",
+                    "tertiary-fixed": "#e3e1ed",
+                    "on-primary-fixed": "#04006d",
+                    "secondary-container": "#6063ee",
+                    "on-primary-container": "#9da1ff",
+                    "inverse-surface": "#263143",
+                    "tertiary-fixed-dim": "#c7c5d1",
+                    "on-tertiary-fixed": "#1a1b23",
+                    "outline": "#777683",
+                    "on-secondary-fixed-variant": "#2f2ebe",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#c7c5d4",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary": "#15157d",
+                    "surface-dim": "#cfdaf2",
+                    "surface-container": "#e7eeff",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#3d3e47",
+                    "primary-fixed": "#e1e0ff",
+                    "surface-container-highest": "#d8e3fb",
+                    "on-secondary-container": "#fffbff",
+                    "surface-bright": "#f9f9ff",
+                    "on-surface-variant": "#464652",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#e1e0ff",
+                    "on-tertiary-fixed-variant": "#46464f",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#c0c1ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "12px",
+                    "stack-md": "24px",
+                    "gutter": "16px",
+                    "stack-lg": "40px",
+                    "container-padding": "20px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Hanken Grotesk"],
+                    "display-lg": ["Manrope"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "headline-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "body-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .waveform-bar {
+            width: 3px;
+            background-color: #6063ee;
+            border-radius: 4px;
+            transition: height 0.15s ease-in-out;
+        }
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .recording-glow {
+            box-shadow: 0 0 25px rgba(96, 99, 238, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Top AppBar (Suppressed for focused task) -->
+<header class="w-full top-0 sticky z-40 bg-background"><div class="flex items-center justify-between px-container-padding py-base w-full max-w-7xl mx-auto"><button class="transition-all duration-200 active:scale-95 hover:opacity-80 p-2">
+  <span class="material-symbols-outlined text-on-surface-variant">chevron_left</span>
+</button>
+<h1 class="font-headline-md text-label-md font-bold text-on-surface">Record Lecture</h1>
+<button class="transition-all duration-200 active:scale-95 hover:opacity-80 p-2">
+  
+</button></div></header>
+<main class="flex-grow flex flex-col items-center justify-start px-container-padding pt-stack-lg pb-stack-lg max-w-lg mx-auto w-full overflow-hidden">
+<!-- Waveform Container -->
+<div class="w-full flex flex-col items-center justify-center py-stack-lg relative mb-stack-lg">
+<!-- Background Decorative Element -->
+<div class="absolute inset-0 flex items-center justify-center -z-10 opacity-20">
+<div class="w-64 h-64 bg-secondary-container rounded-full blur-3xl animate-pulse-slow"></div>
+</div>
+<!-- Animated Waveform Mock -->
+<div class="flex items-center gap-1.5 h-32 w-64 justify-center" id="waveform">
+<!-- Dynamically generated bars would go here, static placeholders for UI -->
+<div class="waveform-bar h-8" style="height: 28%;"></div>
+<div class="waveform-bar h-12" style="height: 73%;"></div>
+<div class="waveform-bar h-24" style="height: 45%;"></div>
+<div class="waveform-bar h-16" style="height: 78%;"></div>
+<div class="waveform-bar h-32" style="height: 37%;"></div>
+<div class="waveform-bar h-40" style="height: 67%;"></div>
+<div class="waveform-bar h-36" style="height: 68%;"></div>
+<div class="waveform-bar h-48" style="height: 24%;"></div>
+<div class="waveform-bar h-44" style="height: 30%;"></div>
+<div class="waveform-bar h-28" style="height: 55%;"></div>
+<div class="waveform-bar h-36" style="height: 47%;"></div>
+<div class="waveform-bar h-40" style="height: 56%;"></div>
+<div class="waveform-bar h-32" style="height: 54%;"></div>
+<div class="waveform-bar h-12" style="height: 81%;"></div>
+<div class="waveform-bar h-8" style="height: 23%;"></div>
+</div>
+</div>
+<!-- Timer and Status -->
+<div class="text-center space-y-2 mb-stack-lg flex-grow">
+<div class="font-display-lg text-display-lg tracking-tight text-primary tabular-nums" id="timer">00:22:39</div>
+<div class="flex items-center justify-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-surface-variant">Recording...</span>
+</div>
+</div>
+<!-- Controls Cluster -->
+<div class="w-full flex items-center justify-between max-w-sm px-gutter mt-auto">
+<!-- Stop/Reset -->
+<button class="w-14 h-14 rounded-full bg-surface-container-low flex items-center justify-center transition-all duration-200 active:scale-90 hover:bg-surface-container-high group" title="Stop and discard">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-error transition-colors">stop</span>
+</button>
+<!-- Main Pause/Play Button -->
+<div class="relative group">
+<div class="absolute -inset-4 bg-secondary-container/20 rounded-full blur-xl group-hover:bg-secondary-container/30 transition-all"></div>
+<button class="relative w-20 h-20 rounded-full bg-secondary text-on-secondary flex items-center justify-center recording-glow transition-all duration-200 active:scale-90 shadow-lg z-10" id="main-toggle">
+<span class="material-symbols-outlined text-4xl" id="toggle-icon" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+</div>
+<!-- Save/Finish -->
+<button class="w-14 h-14 rounded-full bg-surface-container-low flex items-center justify-center transition-all duration-200 active:scale-90 hover:bg-surface-container-high group" title="Save recording">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary transition-colors">check_circle</span>
+</button>
+</div>
+<!-- Meta Info Card (Contextual) -->
+<div class="w-full mt-stack-md">
+
+</div>
+</main>
+<!-- Visual Polish: Transcription Preview (Fades in occasionally or can be toggled) -->
+
+<!-- No BottomNavBar for recording state to keep focus -->
+<script>
+        // Simple Interaction logic
+        const toggleBtn = document.getElementById('main-toggle');
+        const toggleIcon = document.getElementById('toggle-icon');
+        const waveformBars = document.querySelectorAll('.waveform-bar');
+        const timerElement = document.getElementById('timer');
+        
+        let isPaused = false;
+        let seconds = 984; // 16:24
+
+        toggleBtn.addEventListener('click', () => {
+            isPaused = !isPaused;
+            toggleIcon.textContent = isPaused ? 'play_arrow' : 'pause';
+            toggleBtn.classList.toggle('recording-glow', !isPaused);
+            
+            if (isPaused) {
+                toggleBtn.classList.add('bg-primary');
+                toggleBtn.classList.remove('bg-secondary');
+            } else {
+                toggleBtn.classList.add('bg-secondary');
+                toggleBtn.classList.remove('bg-primary');
+            }
+        });
+
+        // Simple Waveform Animation
+        function animateWaveform() {
+            if (!isPaused) {
+                waveformBars.forEach(bar => {
+                    const height = Math.floor(Math.random() * 80) + 20;
+                    bar.style.height = `${height}%`;
+                });
+            }
+            requestAnimationFrame(() => setTimeout(animateWaveform, 150));
+        }
+        animateWaveform();
+
+        // Simple Timer logic
+        setInterval(() => {
+            if (!isPaused) {
+                seconds++;
+                const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
+                const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+                const s = (seconds % 60).toString().padStart(2, '0');
+                timerElement.textContent = `${h}:${m}:${s}`;
+            }
+        }, 1000);
+    </script>
+</body></html>
