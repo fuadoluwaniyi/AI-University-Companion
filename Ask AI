@@ -1,0 +1,173 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#2e3192",
+                        "inverse-on-surface": "#ecf1ff",
+                        "primary": "#15157d",
+                        "surface-dim": "#cfdaf2",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#e7eeff",
+                        "on-secondary-fixed": "#07006c",
+                        "surface-container-low": "#f0f3ff",
+                        "secondary-fixed": "#e1e0ff",
+                        "on-background": "#111c2d",
+                        "background": "#f9f9ff",
+                        "outline-variant": "#c7c5d4",
+                        "outline": "#777683",
+                        "on-tertiary-fixed-variant": "#46464f",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "tertiary-fixed-dim": "#c7c5d1",
+                        "on-surface-variant": "#464652",
+                        "on-secondary-container": "#fffbff",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#263143",
+                        "inverse-primary": "#c0c1ff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e3e1ed",
+                        "on-tertiary-fixed": "#1a1b23",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-tertiary-container": "#aaa9b4",
+                        "surface-variant": "#d8e3fb",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "secondary": "#4648d4",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "secondary-container": "#6063ee",
+                        "tertiary": "#272831",
+                        "tertiary-container": "#3d3e47",
+                        "primary-fixed": "#e1e0ff",
+                        "on-primary-fixed-variant": "#373a9b",
+                        "on-primary-container": "#9da1ff",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#4f54b4",
+                        "on-primary-fixed": "#04006d",
+                        "on-surface": "#111c2d",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#d8e3fb",
+                        "surface-container-high": "#dee8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "base": "8px",
+                        "stack-md": "24px",
+                        "stack-sm": "12px",
+                        "stack-lg": "40px",
+                        "container-padding": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Manrope"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+                    }
+                }
+            }
+        }
+    }catch(_e){}</script></head><body class="bg-background text-on-surface font-body-md min-h-screen">
+
+    <!-- Top App Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-background/90 backdrop-blur-md">
+        <div class="flex justify-between items-center w-full px-container-padding py-4 max-w-7xl mx-auto">
+            <button class="p-1 hover:bg-surface-container rounded-full transition-colors">
+                <span class="material-symbols-outlined text-on-surface" data-original-icon="chevron_left">chevron_left</span>
+            </button>
+            <h1 class="text-[18px] font-bold text-[#111c2d] text-center flex-grow">Ask AI</h1>
+            <button class="p-1 hover:bg-surface-container rounded-full transition-colors">
+                
+            </button>
+        </div>
+    </header>
+
+    <main class="pt-20 pb-40 px-container-padding max-w-3xl mx-auto">
+        <!-- Hero Section -->
+        <div class="text-center mb-8">
+            <img alt="noteIQ Logo" class="w-14 h-14 mx-auto mb-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4EsZIrRIf43jODHgz1AiUM_lL-FeSmj3PivAEUeBYLkR0VXX1VXyzQhcG2JQLlABlro5CME_CPAc9k4ax73izZtIf6BgTieLTy-5IiMnYq7Nzq3bndf3aHO3kkIpjJOOG9WFdRCQMMsK_a-rng48Rg7EoCrzupe8jmtuRQmMwwKcw4kimOYj95oivxoPp8dq1WZ4PEcl0QzsELU48859Lz5ok9FNz7_9mN_6TCI7pNBhVW86NQDWh9YTQuoGn4Cqhh9gHhrFCVKzi">
+            <h2 class="text-[28px] font-extrabold text-primary leading-tight tracking-tight">
+                Ask anything<br>from your notes
+            </h2>
+        </div>
+
+        <!-- Chips Horizontal -->
+        <div class="flex overflow-x-auto gap-2 no-scrollbar mb-10 pb-2">
+            <button class="flex-shrink-0 px-4 py-2 bg-white border border-outline-variant rounded-xl text-[14px] font-semibold text-on-surface hover:bg-surface-container transition-all">Summarize</button>
+            <button class="flex-shrink-0 px-4 py-2 bg-white border border-outline-variant rounded-xl text-[14px] font-semibold text-on-surface hover:bg-surface-container transition-all">Explain</button>
+            <button class="flex-shrink-0 px-4 py-2 bg-white border border-outline-variant rounded-xl text-[14px] font-semibold text-on-surface hover:bg-surface-container transition-all">Quiz me</button>
+            <button class="flex-shrink-0 px-4 py-2 bg-white border border-outline-variant rounded-xl text-[14px] font-semibold text-on-surface hover:bg-surface-container transition-all">Flashcards</button>
+        </div>
+
+        <!-- Chat Conversation Area -->
+        <div class="space-y-6">
+            <!-- User Message -->
+            <div class="flex flex-col items-end">
+                <div class="max-w-[85%] bg-secondary-container text-white p-4 rounded-2xl rounded-tr-sm shadow-sm">
+                    <p class="text-[15px] leading-relaxed">Explain the process of photosynthesis.</p>
+                    <div class="text-right mt-2">
+                        <span class="text-[10px] opacity-80">10:30 AM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Response Message -->
+            <div class="flex flex-col items-start">
+                <span class="text-[12px] font-bold text-primary mb-1 ml-1">You</span>
+                <div class="max-w-[90%] bg-white border border-outline-variant p-4 rounded-2xl rounded-tl-sm shadow-sm space-y-4"><p class="text-[15px] text-on-surface leading-relaxed">Photosynthesis is the fundamental biological process used by plants, algae, and certain bacteria to convert light energy into chemical energy. This energy is stored as sugar (glucose) which fuels the organism's activities.</p><div class="space-y-3"><div class="p-3 rounded-xl border border-outline-variant bg-background"><h4 class="text-[14px] font-bold text-primary mb-1">Light-Dependent</h4><p class="text-[13px] text-on-surface-variant">Occurs in the thylakoid membranes, converting solar energy into ATP and NADPH.</p></div><div class="p-3 rounded-xl border border-outline-variant bg-background"><h4 class="text-[14px] font-bold text-primary mb-1">Calvin Cycle</h4><p class="text-[13px] text-on-surface-variant">Occurs in the stroma, using ATP and NADPH to fix CO2 into glucose.</p></div></div><p class="text-[15px] text-on-surface leading-relaxed italic">"The entire process takes place within specialized organelles called chloroplasts."</p><div class="text-right"><span class="text-[10px] text-outline">10:30 AM</span></div></div>
+
+                <!-- Source Card (Integrated into AI response flow as per ref) -->
+                <div class="mt-3 flex items-center gap-3 p-3 bg-secondary-fixed/30 rounded-xl border border-secondary/20 max-w-[70%]">
+                    <div class="w-8 h-8 bg-white/50 rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined text-secondary text-xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                    </div>
+                    <div class="">
+                        <span class="text-[10px] text-secondary font-bold uppercase tracking-wide block leading-none mb-1">From your notes</span>
+                        <span class="text-[13px] text-on-surface font-semibold block leading-none">Cell Biology - Week 4</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Input Area -->
+    <div class="fixed left-0 w-full px-container-padding z-40 bottom-6">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white border border-outline-variant rounded-full px-5 py-3 flex items-center gap-3 shadow-sm">
+                <input class="flex-grow bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline text-[15px]" placeholder="Ask a follow up..." type="text">
+                <button class="bg-primary-container text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-[20px]">send</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    
+
+    <script class="">
+        // Active state for chips
+        const actionChips = document.querySelectorAll('.no-scrollbar button');
+        actionChips.forEach(</script></body></html>
