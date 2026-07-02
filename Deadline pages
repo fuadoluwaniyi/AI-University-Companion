@@ -1,0 +1,773 @@
+<!-- Deadlines (Exact Match) -->
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Deadlines - noteIQ</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f0f3ff",
+                    "primary": "#15157d",
+                    "on-secondary-fixed-variant": "#2f2ebe",
+                    "surface-variant": "#d8e3fb",
+                    "primary-container": "#2e3192",
+                    "on-secondary-container": "#fffbff",
+                    "on-tertiary-fixed-variant": "#46464f",
+                    "outline": "#777683",
+                    "on-tertiary-fixed": "#1a1b23",
+                    "surface-container-highest": "#d8e3fb",
+                    "surface-tint": "#4f54b4",
+                    "inverse-on-surface": "#ecf1ff",
+                    "outline-variant": "#c7c5d4",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "background": "#f9f9ff",
+                    "primary-fixed": "#e1e0ff",
+                    "surface-container-high": "#dee8ff",
+                    "secondary-fixed": "#e1e0ff",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#e7eeff",
+                    "secondary-fixed-dim": "#c0c1ff",
+                    "surface-bright": "#f9f9ff",
+                    "on-surface": "#111c2d",
+                    "on-surface-variant": "#464652",
+                    "surface": "#f9f9ff",
+                    "tertiary-fixed": "#e3e1ed",
+                    "on-primary-fixed": "#04006d",
+                    "on-background": "#111c2d",
+                    "secondary-container": "#6063ee",
+                    "tertiary-container": "#3d3e47",
+                    "tertiary": "#272831",
+                    "on-secondary-fixed": "#07006c",
+                    "inverse-surface": "#263143",
+                    "inverse-primary": "#c0c1ff",
+                    "on-primary-fixed-variant": "#373a9b",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#aaa9b4",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#cfdaf2",
+                    "on-primary-container": "#9da1ff",
+                    "secondary": "#4648d4",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "tertiary-fixed-dim": "#c7c5d1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "12px",
+                    "gutter": "16px",
+                    "container-padding": "20px",
+                    "stack-lg": "40px",
+                    "base": "8px",
+                    "stack-md": "24px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "display-lg": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Hanken Grotesk"],
+                    "headline-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+        .fab-press:active {
+            transform: scale(0.92);
+        }
+        /* Custom scrollbar for desktop flow */
+        @media (min-width: 768px) {
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #c7c5d4;
+                border-radius: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col items-center">
+<div class="w-full max-w-md bg-surface min-h-screen relative overflow-hidden flex flex-col pb-24 md:pb-0">
+<!-- Header Section -->
+<header class="flex justify-between items-center px-container-padding py-base w-full sticky top-0 bg-surface z-40">
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container-low transition-colors rounded-full text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface">Deadlines</h1>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container-low transition-colors rounded-full text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+</header>
+<!-- Main Content Scrollable Area -->
+<main class="flex-1 overflow-y-auto px-container-padding">
+<!-- Month Navigation -->
+<div class="flex items-center justify-between mb-gutter pt-base">
+<button class="p-2 text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<h2 class="font-headline-md text-body-lg font-bold">May 2026</h2>
+<button class="p-2 text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<!-- Calendar View -->
+<div class="calendar-grid text-center gap-y-4 mb-stack-lg">
+<!-- Days of week -->
+<div class="font-label-sm text-on-surface-variant uppercase">Sun</div>
+<div class="font-label-sm text-on-surface-variant uppercase">Mon</div>
+<div class="font-label-sm text-on-surface-variant uppercase">Tue</div>
+<div class="font-label-sm text-on-surface-variant uppercase">Wed</div>
+<div class="font-label-sm text-on-surface-variant uppercase">Thu</div>
+<div class="font-label-sm text-on-surface-variant uppercase">Fri</div>
+<div class="font-label-sm text-on-surface-variant uppercase">Sat</div>
+<!-- Dates Grid (Placeholder for May 2026 starting Fri) -->
+<div class="text-on-surface-variant font-label-md py-2 opacity-30">26</div>
+<div class="text-on-surface-variant font-label-md py-2 opacity-30">27</div>
+<div class="text-on-surface-variant font-label-md py-2 opacity-30">28</div>
+<div class="text-on-surface-variant font-label-md py-2 opacity-30">29</div>
+<div class="text-on-surface-variant font-label-md py-2 opacity-30">30</div>
+<div class="text-on-surface font-label-md py-2">1</div>
+<div class="text-on-surface font-label-md py-2">2</div>
+<div class="text-on-surface font-label-md py-2">3</div>
+<div class="text-on-surface font-label-md py-2">4</div>
+<div class="text-on-surface font-label-md py-2">5</div>
+<div class="text-on-surface font-label-md py-2">6</div>
+<div class="text-on-surface font-label-md py-2">7</div>
+<div class="text-on-surface font-label-md py-2">8</div>
+<div class="text-on-surface font-label-md py-2">9</div>
+<div class="text-on-surface font-label-md py-2">10</div>
+<div class="text-on-surface font-label-md py-2">11</div>
+<div class="text-on-surface font-label-md py-2">12</div>
+<div class="text-on-surface font-label-md py-2">13</div>
+<div class="text-on-surface font-label-md py-2">14</div>
+<div class="text-on-surface font-label-md py-2">15</div>
+<div class="text-on-surface font-label-md py-2">16</div>
+<div class="text-on-surface font-label-md py-2">17</div>
+<div class="text-on-surface font-label-md py-2">18</div>
+<div class="text-on-surface font-label-md py-2">19</div>
+<!-- Current Date Highlighted -->
+<div class="relative flex items-center justify-center">
+<span class="w-10 h-10 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center font-bold z-10">20</span>
+</div>
+<div class="text-on-surface font-label-md py-2">21</div>
+<div class="text-on-surface font-label-md py-2">22</div>
+<div class="text-on-surface font-label-md py-2">23</div>
+<div class="text-on-surface font-label-md py-2">24</div>
+<div class="text-on-surface font-label-md py-2">25</div>
+<div class="text-on-surface font-label-md py-2">26</div>
+<div class="text-on-surface font-label-md py-2">27</div>
+<div class="text-on-surface font-label-md py-2">28</div>
+<div class="text-on-surface font-label-md py-2">29</div>
+<div class="text-on-surface font-label-md py-2">30</div>
+<div class="text-on-surface font-label-md py-2">31</div>
+<div class="text-on-surface-variant font-label-md py-2 opacity-30">1</div>
+<div class="text-on-surface-variant font-label-md py-2 opacity-30">2</div>
+<div class="text-on-surface-variant font-label-md py-2 opacity-30">3</div>
+<div class="text-on-surface-variant font-label-md py-2 opacity-30">4</div>
+<div class="text-on-surface-variant font-label-md py-2 opacity-30">5</div>
+<div class="text-on-surface-variant font-label-md py-2 opacity-30">6</div>
+</div>
+<!-- Upcoming Section -->
+<section class="mb-stack-lg">
+<h3 class="font-headline-md text-body-lg font-bold mb-stack-sm text-on-surface">Upcoming</h3>
+<div class="space-y-stack-sm">
+<!-- Deadline Item 1 -->
+<div class="bg-surface-container-lowest p-container-padding rounded-xl shadow-sm border border-transparent hover:border-surface-variant transition-all flex justify-between items-center group cursor-pointer">
+<div class="space-y-1">
+<h4 class="font-label-md text-on-surface">Physics Lab Report</h4>
+<p class="font-label-sm text-on-surface-variant">May 20, 2026 • 11:59 PM</p>
+</div>
+<span class="font-label-md text-error">Due today</span>
+</div>
+<!-- Deadline Item 2 -->
+<div class="bg-surface-container-lowest p-container-padding rounded-xl shadow-sm border border-transparent hover:border-surface-variant transition-all flex justify-between items-center group cursor-pointer">
+<div class="space-y-1">
+<h4 class="font-label-md text-on-surface">Calculus Quiz</h4>
+<p class="font-label-sm text-on-surface-variant">May 21, 2026 • 10:00 AM</p>
+</div>
+<span class="font-label-md text-secondary" style="color: #ea580c;">1 day left</span>
+</div>
+<!-- Deadline Item 3 -->
+<div class="bg-surface-container-lowest p-container-padding rounded-xl shadow-sm border border-transparent hover:border-surface-variant transition-all flex justify-between items-center group cursor-pointer">
+<div class="space-y-1">
+<h4 class="font-label-md text-on-surface">Algorithms Assignment</h4>
+<p class="font-label-sm text-on-surface-variant">May 23, 2026 • 11:59 PM</p>
+</div>
+<span class="font-label-md text-primary">3 days left</span>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB - Only visible if primary purpose matches -->
+<button class="fixed right-6 w-14 h-14 bg-secondary-container text-on-secondary-container rounded-full shadow-lg flex items-center justify-center fab-press transition-transform duration-150 z-50 bottom-6">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+<!-- Bottom Navigation Shell (Persistent UI) -->
+
+</div>
+<!-- Micro-interaction script -->
+<script>
+        document.querySelectorAll('.cursor-pointer').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.add('scale-[0.98]');
+                setTimeout(() => {
+                    this.classList.remove('scale-[0.98]');
+                }, 100);
+            });
+        });
+    </script>
+
+
+</body></html>
+
+<!-- Add Deadline Form -->
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Add Deadline - Student Planner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed-variant": "#46464f",
+                "surface-container-high": "#dee8ff",
+                "secondary-fixed": "#e1e0ff",
+                "on-tertiary-fixed": "#1a1b23",
+                "primary-fixed": "#e1e0ff",
+                "on-secondary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "surface-container": "#e7eeff",
+                "surface-container-low": "#f0f3ff",
+                "primary-container": "#2e3192",
+                "on-tertiary-container": "#aaa9b4",
+                "inverse-on-surface": "#ecf1ff",
+                "outline": "#777683",
+                "inverse-surface": "#263143",
+                "surface-container-highest": "#d8e3fb",
+                "on-secondary-container": "#fffbff",
+                "on-primary-container": "#9da1ff",
+                "tertiary-container": "#3d3e47",
+                "surface-dim": "#cfdaf2",
+                "outline-variant": "#c7c5d4",
+                "on-primary-fixed": "#04006d",
+                "surface": "#f9f9ff",
+                "on-primary": "#ffffff",
+                "on-surface-variant": "#464652",
+                "primary-fixed-dim": "#c0c1ff",
+                "secondary-container": "#6063ee",
+                "surface-bright": "#f9f9ff",
+                "on-secondary-fixed-variant": "#2f2ebe",
+                "inverse-primary": "#c0c1ff",
+                "on-error": "#ffffff",
+                "secondary": "#4648d4",
+                "error": "#ba1a1a",
+                "tertiary-fixed": "#e3e1ed",
+                "surface-container-lowest": "#ffffff",
+                "tertiary": "#272831",
+                "on-error-container": "#93000a",
+                "on-surface": "#111c2d",
+                "primary": "#15157d",
+                "on-secondary-fixed": "#07006c",
+                "on-primary-fixed-variant": "#373a9b",
+                "surface-variant": "#d8e3fb",
+                "on-background": "#111c2d",
+                "error-container": "#ffdad6",
+                "secondary-fixed-dim": "#c0c1ff",
+                "background": "#f9f9ff",
+                "tertiary-fixed-dim": "#c7c5d1",
+                "surface-tint": "#4f54b4"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "stack-sm": "12px",
+                "container-padding": "20px",
+                "stack-lg": "40px",
+                "stack-md": "24px",
+                "base": "8px",
+                "gutter": "16px"
+            },
+            "fontFamily": {
+                "label-sm": ["Hanken Grotesk"],
+                "body-md": ["Hanken Grotesk"],
+                "body-lg": ["Hanken Grotesk"],
+                "headline-lg": ["Manrope"],
+                "label-md": ["Hanken Grotesk"],
+                "headline-lg-mobile": ["Manrope"],
+                "display-lg": ["Manrope"],
+                "headline-md": ["Manrope"]
+            },
+            "fontSize": {
+                "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .form-input-shadow {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-background dark:bg-on-background">
+<div class="flex items-center justify-between px-container-padding py-base w-full max-w-7xl mx-auto">
+<button class="transition-all duration-200 active:scale-95 hover:opacity-80 p-2">
+  <span class="material-symbols-outlined text-on-surface-variant">chevron_left</span>
+</button>
+<h1 class="font-headline-md text-label-md font-bold text-on-surface">Add Deadline</h1>
+<button class="transition-all duration-200 active:scale-95 hover:opacity-80 px-4 py-2 text-label-md font-bold text-primary">
+  Save
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="max-w-md mx-auto px-container-padding py-stack-sm pb-stack-lg">
+<form class="space-y-stack-sm">
+<!-- Title Field -->
+<div class="space-y-base">
+<label class="text-label-md font-label-md text-on-surface-variant block ml-1">Title</label>
+<input class="w-full h-12 px-4 bg-surface-container-lowest border-none rounded-lg text-body-md text-on-surface focus:ring-2 focus:ring-secondary-container form-input-shadow transition-all" type="text" value="Biochemistry Exam">
+</div>
+<!-- Subject Field -->
+<div class="space-y-base">
+<label class="text-label-md font-label-md text-on-surface-variant block ml-1">Subject</label>
+<div class="relative group cursor-pointer">
+<div class="w-full h-12 px-4 bg-surface-container-lowest border-none rounded-lg flex items-center justify-between form-input-shadow group-active:scale-[0.99] transition-transform">
+<div class="flex items-center gap-3">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-container"></span>
+<span class="text-body-md text-on-surface">Biochemistry</span>
+</div>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Type Field -->
+<div class="space-y-base">
+<label class="text-label-md font-label-md text-on-surface-variant block ml-1">Type</label>
+<div class="relative group cursor-pointer">
+<div class="w-full h-12 px-4 bg-surface-container-lowest border-none rounded-lg flex items-center justify-between form-input-shadow group-active:scale-[0.99] transition-transform">
+<span class="text-body-md text-on-surface">Exam</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Due Date Field -->
+<div class="space-y-base">
+<label class="text-label-md font-label-md text-on-surface-variant block ml-1">Due Date</label>
+<div class="grid grid-cols-2 gap-3">
+<div class="relative group">
+<input class="w-full h-12 pl-4 pr-10 bg-surface-container-lowest border-none rounded-lg text-body-md text-on-surface form-input-shadow focus:ring-2 focus:ring-secondary-container transition-all cursor-pointer" readonly="" type="text" value="May 28, 2026">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="calendar_month">calendar_month</span>
+</div>
+<div class="relative group">
+<input class="w-full h-12 pl-4 pr-10 bg-surface-container-lowest border-none rounded-lg text-body-md text-on-surface form-input-shadow focus:ring-2 focus:ring-secondary-container transition-all cursor-pointer" readonly="" type="text" value="09:00 AM">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="schedule">schedule</span>
+</div>
+</div>
+</div>
+<!-- Reminder Field -->
+<div class="space-y-base">
+<label class="text-label-md font-label-md text-on-surface-variant block ml-1">Reminder</label>
+<div class="relative group cursor-pointer">
+<div class="w-full h-12 px-4 bg-surface-container-lowest border-none rounded-lg flex items-center justify-between form-input-shadow group-active:scale-[0.99] transition-transform">
+<span class="text-body-md text-on-surface">1 day before</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Repeat Field -->
+<div class="space-y-base">
+<label class="text-label-md font-label-md text-on-surface-variant block ml-1">Repeat</label>
+<div class="relative group cursor-pointer">
+<div class="w-full h-12 px-4 bg-surface-container-lowest border-none rounded-lg flex items-center justify-between form-input-shadow group-active:scale-[0.99] transition-transform">
+<span class="text-body-md text-on-surface">Don't repeat</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Notes Field -->
+<div class="space-y-base">
+<label class="text-label-md font-label-md text-on-surface-variant block ml-1">Notes</label>
+<textarea class="w-full p-4 bg-surface-container-lowest border-none rounded-lg text-body-md text-on-surface focus:ring-2 focus:ring-secondary-container form-input-shadow resize-none transition-all custom-scrollbar" rows="3">Bring calculator and formula sheet</textarea>
+</div>
+<!-- Color Field -->
+<div class="space-y-base pt-2">
+<label class="text-label-md font-label-md text-on-surface-variant block ml-1">Color</label>
+<div class="flex items-center justify-between px-2">
+<!-- Red -->
+<button class="w-8 h-8 rounded-full bg-[#FF5252] border-2 border-transparent transition-all focus:border-outline-variant hover:scale-110 active:scale-95" type="button"></button>
+<!-- Orange -->
+<button class="w-8 h-8 rounded-full bg-[#FF9100] border-2 border-transparent transition-all focus:border-outline-variant hover:scale-110 active:scale-95" type="button"></button>
+<!-- Yellow -->
+<button class="w-8 h-8 rounded-full bg-[#FFD600] border-2 border-transparent transition-all focus:border-outline-variant hover:scale-110 active:scale-95" type="button"></button>
+<!-- Green -->
+<button class="w-8 h-8 rounded-full bg-[#00E676] border-2 border-transparent transition-all focus:border-outline-variant hover:scale-110 active:scale-95" type="button"></button>
+<!-- Light Blue -->
+<button class="w-8 h-8 rounded-full bg-[#00B0FF] border-2 border-transparent transition-all focus:border-outline-variant hover:scale-110 active:scale-95" type="button"></button>
+<!-- Purple (Selected) -->
+<button class="w-8 h-8 rounded-full bg-[#651FFF] border-4 border-surface ring-2 ring-primary-container transition-all hover:scale-110 active:scale-95" type="button"></button>
+</div>
+</div>
+</form>
+</main>
+<script>
+        // Simple micro-interaction for color selection
+        const colorButtons = document.querySelectorAll('button[type="button"]');
+        colorButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                colorButtons.forEach(b => {
+                    b.classList.remove('border-4', 'border-surface', 'ring-2', 'ring-primary-container');
+                    b.classList.add('border-2', 'border-transparent');
+                });
+                btn.classList.remove('border-2', 'border-transparent');
+                btn.classList.add('border-4', 'border-surface', 'ring-2', 'ring-primary-container');
+            });
+        });
+
+        // Click-away effect for dropdowns (visual only)
+        const dropdowns = document.querySelectorAll('.group.cursor-pointer');
+        dropdowns.forEach(dd => {
+            dd.addEventListener('click', () => {
+                dd.style.opacity = '0.7';
+                setTimeout(() => dd.style.opacity = '1', 150);
+            });
+        });
+    </script>
+
+
+</body></html>
+
+<!-- Reminder Selection Overlay -->
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add Deadline - Reminder Selection</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#e3e1ed",
+                    "surface-bright": "#f9f9ff",
+                    "on-tertiary-fixed-variant": "#46464f",
+                    "on-tertiary-fixed": "#1a1b23",
+                    "on-primary-fixed": "#04006d",
+                    "on-error": "#ffffff",
+                    "tertiary": "#272831",
+                    "on-surface": "#111c2d",
+                    "on-secondary-fixed-variant": "#2f2ebe",
+                    "inverse-on-surface": "#ecf1ff",
+                    "background": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#c0c1ff",
+                    "outline-variant": "#c7c5d4",
+                    "secondary-container": "#6063ee",
+                    "surface-container-low": "#f0f3ff",
+                    "surface-variant": "#d8e3fb",
+                    "on-primary-fixed-variant": "#373a9b",
+                    "on-background": "#111c2d",
+                    "on-secondary-fixed": "#07006c",
+                    "primary-container": "#2e3192",
+                    "on-secondary-container": "#fffbff",
+                    "tertiary-container": "#3d3e47",
+                    "secondary-fixed-dim": "#c0c1ff",
+                    "outline": "#777683",
+                    "surface-dim": "#cfdaf2",
+                    "surface-container-highest": "#d8e3fb",
+                    "on-tertiary-container": "#aaa9b4",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "primary": "#15157d",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#e7eeff",
+                    "secondary-fixed": "#e1e0ff",
+                    "on-primary-container": "#9da1ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "tertiary-fixed-dim": "#c7c5d1",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "inverse-surface": "#263143",
+                    "primary-fixed": "#e1e0ff",
+                    "on-surface-variant": "#464652",
+                    "surface-tint": "#4f54b4",
+                    "surface-container-high": "#dee8ff",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "secondary": "#4648d4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "24px",
+                    "container-padding": "20px",
+                    "stack-lg": "40px",
+                    "stack-sm": "12px",
+                    "gutter": "16px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-md": ["Hanken Grotesk"],
+                    "headline-md": ["Manrope"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "display-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9f9ff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100dvh;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .form-input-shadow {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface overflow-hidden">
+<!-- Background: Add Deadline Form (SCREEN_46) -->
+<div class="fixed inset-0 z-0 overflow-hidden select-none">
+<!-- TopAppBar Mockup from SCREEN_46 -->
+<header class="w-full bg-surface">
+<div class="flex items-center justify-between px-container-padding py-base w-full max-w-7xl mx-auto">
+<div class="p-2">
+<span class="material-symbols-outlined text-on-surface-variant">chevron_left</span>
+</div>
+<h1 class="font-headline-md text-label-md font-bold text-on-surface">Add Deadline</h1>
+<div class="px-4 py-2 text-label-md font-bold text-primary">Save</div>
+</div>
+</header>
+<main class="max-w-md mx-auto px-container-padding py-stack-sm space-y-stack-sm">
+<div class="space-y-base">
+<label class="text-label-md font-label-md text-on-surface-variant block ml-1">Title</label>
+<div class="w-full h-12 px-4 bg-surface-container-lowest rounded-lg flex items-center text-body-md text-on-surface/40 form-input-shadow">Biochemistry Exam</div>
+</div>
+<div class="space-y-base">
+<label class="text-label-md font-label-md text-on-surface-variant block ml-1">Subject</label>
+<div class="w-full h-12 px-4 bg-surface-container-lowest rounded-lg flex items-center justify-between form-input-shadow">
+<div class="flex items-center gap-3">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-container"></span>
+<span class="text-body-md text-on-surface/40">Biochemistry</span>
+</div>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+</div>
+<div class="space-y-base">
+<label class="text-label-md font-label-md text-on-surface-variant block ml-1">Type</label>
+<div class="w-full h-12 px-4 bg-surface-container-lowest rounded-lg flex items-center justify-between form-input-shadow">
+<span class="text-body-md text-on-surface/40">Exam</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+</div>
+<div class="space-y-base">
+<label class="text-label-md font-label-md text-on-surface-variant block ml-1">Due Date</label>
+<div class="grid grid-cols-2 gap-3">
+<div class="h-12 px-4 bg-surface-container-lowest rounded-lg flex items-center justify-between form-input-shadow">
+<span class="text-body-md text-on-surface/40">May 28, 2026</span>
+<span class="material-symbols-outlined text-outline">calendar_month</span>
+</div>
+<div class="h-12 px-4 bg-surface-container-lowest rounded-lg flex items-center justify-between form-input-shadow">
+<span class="text-body-md text-on-surface/40">09:00 AM</span>
+<span class="material-symbols-outlined text-outline">schedule</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Backdrop -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-[2px] z-10 transition-opacity duration-300"></div>
+<!-- Modal / Bottom Sheet -->
+<div class="fixed inset-x-0 bottom-0 z-20 flex flex-col bg-surface-container-lowest rounded-t-[24px] shadow-2xl transition-transform duration-300 transform translate-y-0 max-h-[85vh]">
+<!-- Sheet Header -->
+<div class="flex items-center px-container-padding h-14 border-b border-outline-variant/30">
+<button class="font-label-md text-label-md text-primary font-bold hover:opacity-70 transition-opacity px-2">
+            Cancel
+        </button>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<div class="divide-y divide-outline-variant/30 px-container-padding">
+<!-- List Items from SCREEN_24 -->
+<div class="flex items-center justify-between py-4 group cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="font-body-md text-body-md text-on-surface">No reminder</span>
+</div>
+<div class="flex items-center justify-between py-4 group cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="font-body-md text-body-md text-on-surface">At time of event</span>
+</div>
+<div class="flex items-center justify-between py-4 group cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="font-body-md text-body-md text-on-surface">5 minutes before</span>
+</div>
+<div class="flex items-center justify-between py-4 group cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="font-body-md text-body-md text-on-surface">15 minutes before</span>
+</div>
+<div class="flex items-center justify-between py-4 group cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="font-body-md text-body-md text-on-surface">1 hour before</span>
+</div>
+<!-- 1 day before (Selected State) -->
+<div class="flex items-center justify-between py-4 group cursor-pointer bg-surface-container-low/30 -mx-container-padding px-container-padding transition-colors">
+<span class="font-body-md text-body-md font-bold text-primary">1 day before</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'wght' 600;">check</span>
+</div>
+<div class="flex items-center justify-between py-4 group cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="font-body-md text-body-md text-on-surface">2 days before</span>
+</div>
+<div class="flex items-center justify-between py-4 group cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="font-body-md text-body-md text-on-surface">1 week before</span>
+</div>
+<div class="flex items-center justify-between py-4 group cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="font-body-md text-body-md text-on-surface">Custom</span>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Safe Area Bottom -->
+<div class="h-8 bg-surface-container-lowest"></div>
+</div>
+<script>
+    // Interaction logic for the list items
+    document.querySelectorAll('.cursor-pointer').forEach(item => {
+        item.addEventListener('click', function() {
+            // Remove existing selection styling
+            const currentSelectedRow = document.querySelector('.bg-surface-container-low\\/30');
+            if (currentSelectedRow) {
+                currentSelectedRow.classList.remove('bg-surface-container-low/30', '-mx-container-padding', 'px-container-padding');
+                const label = currentSelectedRow.querySelector('span:first-child');
+                label.classList.remove('font-bold', 'text-primary');
+                label.classList.add('text-on-surface');
+                const check = currentSelectedRow.querySelector('.material-symbols-outlined:not([data-icon="chevron_right"])');
+                if (check && check.textContent === 'check') check.remove();
+            }
+
+            // Apply to new item if it's not the Custom row
+            const isCustom = this.querySelector('span:last-child').textContent === 'chevron_right';
+            if (!isCustom) {
+                this.classList.add('bg-surface-container-low/30', '-mx-container-padding', 'px-container-padding');
+                const label = this.querySelector('span:first-child');
+                label.classList.add('font-bold', 'text-primary');
+                label.classList.remove('text-on-surface');
+                
+                const check = document.createElement('span');
+                check.className = 'material-symbols-outlined text-primary';
+                check.style.fontVariationSettings = "'wght' 600";
+                check.textContent = 'check';
+                this.appendChild(check);
+            }
+        });
+    });
+</script>
+</body></html>
